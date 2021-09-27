@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js cho form</title>
+    <link rel="stylesheet" href="./access/fonts/icofont/icofont.min.css">
+    <link rel="stylesheet" href="./access/form.css">
+</head>
+<body>
+    <div class="main">
+
+        <form action="" method="post" id="form-1" class="form">
+            <div class="header">
+                <h3 class="heading">Thành viên đăng ký</h3>
+                <p class="desc">Cảm ơn các bạn đã đăng ký dịch vụ của chúng tôi<i class="icofont-heart-alt heart"></i></p>
+            </div>
+            <div class="form-group">
+                <label for="fullname" class="form-label">Tên đầy đủ:</label>
+                <input  class="form-input" type="text" name="fullname" id="fullname" placeholder="VD:NguyenVanDuong">
+                <span class="form-message"></span>
+            </div>
+    
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input  class="form-input" type="email" name="email" id="email" placeholder="VD:duong280201hihi@gmail.com">
+                <span class="form-message"></span>
+            </div>
+    
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu:</label>
+                <input class="form-input" type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                <span class="form-message"></span>
+            </div>
+    
+            <div class="form-group">
+                <label for="Again-password" class="form-label">Nhập lại mật khẩu:</label>
+                <input  class="form-input" type="password" name="Again-password" id="Again-password" placeholder="Nhập lại mật khẩu">
+                <span class="form-message"></span>
+            </div>
+    
+            <button class="form-submit">Đăng ký</button>
+
+        </form>
+        <button class="return">Trở lại</button>
+    </div>
+
+    <script src="./access/validator.js"></script>
+
+    <script>
+
+        const returns = document.querySelector('.return');
+
+        returns.onclick = function () {
+            var confirmOutSignUp = confirm('Bạn chưa hoàn tất đăng ký. Bạn chắc chắn muốn thoát !')
+            if(confirmOutSignUp == true) {
+                document.querySelector('.main').style.display = 'none';
+            }else {
+                
+            }
+        }
+
+        Validator ({
+            form:'#form-1',
+            errMessage:'.form-message',
+            rules:[
+                Validator.isRequired('#fullname'),
+                Validator.isEmail('#email'),
+                Validator.minLengthPassword('#password',6),
+                Validator.checkPassword('#Again-password')
+            ],
+            onSubmit:function (data) {
+                console.log(data)
+            }
+        })
+
+    </script>
+</body>
+</html>
